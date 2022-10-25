@@ -13,7 +13,7 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("We love previews!")
         }
         .padding()
     }
@@ -21,6 +21,13 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+                .preferredColorScheme(.light)
+            
+            ContentView()
+                .preferredColorScheme(.dark)
+        }
+        
     }
 }
