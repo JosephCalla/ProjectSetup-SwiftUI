@@ -7,34 +7,59 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    let data = [
-        "Apples", "Oranges", "Graphs", "Apples"
-    ]
+struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        ForEach(0...100, id: \.self) { num in
-                            Text("Label \(num)")
-                        }
-                    }
+                Color.blue
+            }
+            .navigationTitle("Home")
+        }
+    }
+}
+
+
+struct ActivityView: View {
+    var body: some View {
+        NavigationView {
+            VStack {
+                Color.red
+            }
+            .navigationTitle("Activity")
+        }
+    }
+}
+
+struct SettingView: View {
+    var body: some View {
+        NavigationView {
+            VStack {
+                Color.purple
+            }
+            .navigationTitle("Settings")
+        }
+    }
+}
+struct ContentView: View {
+    var body: some View {
+        TabView {
+            HomeView()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("First")
                 }
-                
-                
-                
-                List(data, id: \.self) { fruit in
-                    Text(fruit)
+            
+            ActivityView()
+                .tabItem {
+                    Image(systemName: "bell")
+                    Text("Activity")
                 }
-                
-                NavigationLink(
-                    destination: Text("Second View").navigationTitle("Second"),
-                    label: {
-                    ButtonContent(title: "Do something")
-                })
-                
-            }.navigationTitle("Home")
+            
+            SettingView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
         }
         
         
@@ -58,7 +83,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
-                .preferredColorScheme(.dark)
+                .preferredColorScheme(.light)
         }
         
     }
