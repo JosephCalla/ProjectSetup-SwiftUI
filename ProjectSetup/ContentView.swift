@@ -8,30 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    let data = [
+        "Apples", "Oranges", "Graphs", "Apples"
+    ]
     var body: some View {
-        VStack {
-            Image(systemName: "sun.max.fill")
-                .resizable()
-                .renderingMode(.original)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50, alignment: .center)
-                .padding()
-            
-            Image("test")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame( width: 300, height: 100, alignment: .center)
-                .padding()
+        NavigationView {
+            VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20) {
+                        ForEach(0...100, id: \.self) { num in
+                            Text("Label \(num)")
+                        }
+                    }
+                }
                 
-            
-            
-            Button {
-                print("Tapped")
-            } label: {
-                ButtonContent(title: "Do something")
-            }
-
+                
+                
+                List(data, id: \.self) { fruit in
+                    Text(fruit)
+                }
+                
+                NavigationLink(
+                    destination: Text("Second View").navigationTitle("Second"),
+                    label: {
+                    ButtonContent(title: "Do something")
+                })
+                
+            }.navigationTitle("Home")
         }
+        
+        
     }
 }
 
