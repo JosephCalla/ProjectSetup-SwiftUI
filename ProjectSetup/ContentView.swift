@@ -9,26 +9,42 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(alignment: .trailing, spacing: 200) {
-            ZStack {
-                Color.blue
-                HStack {
-                    Text("First")
-                    Text("Second")
-                    Text("Third")
-                }
+        VStack {
+            Image(systemName: "sun.max.fill")
+                .resizable()
+                .renderingMode(.original)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 50, height: 50, alignment: .center)
+                .padding()
+            
+            Image("test")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame( width: 300, height: 100, alignment: .center)
+                .padding()
+                
+            
+            
+            Button {
+                print("Tapped")
+            } label: {
+                ButtonContent(title: "Do something")
             }
-            
-            
-            Spacer()
-            
-            ZStack {
-                Text("Second vertical thing")
-            }
-            
-            Spacer()
-            
+
         }
+    }
+}
+
+struct ButtonContent: View {
+    var title: String
+    var body: some View {
+        Text(title)
+            .font(.system(size: 24))
+            .bold()
+            .frame(width: 220, height: 50, alignment: .center)
+            .background(Color.pink)
+            .foregroundColor(Color.white)
+            .cornerRadius(10)
     }
 }
 
