@@ -9,22 +9,32 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("We love previews!")
+        VStack(alignment: .trailing, spacing: 200) {
+            ZStack {
+                Color.blue
+                HStack {
+                    Text("First")
+                    Text("Second")
+                    Text("Third")
+                }
+            }
+            
+            
+            Spacer()
+            
+            ZStack {
+                Text("Second vertical thing")
+            }
+            
+            Spacer()
+            
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
-                .preferredColorScheme(.light)
-            
             ContentView()
                 .preferredColorScheme(.dark)
         }
