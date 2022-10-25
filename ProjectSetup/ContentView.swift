@@ -8,10 +8,39 @@
 import SwiftUI
 
 struct HomeView: View {
+    var data = (0...1000).map({ "Grid Item \($0)" })
+    
+    var colums: [GridItem] = [
+        GridItem(.fixed(100),
+                 spacing: 20,
+                 alignment: .center),
+        
+        GridItem(.fixed(100),
+                 spacing: 20,
+                 alignment: .center),
+        
+        GridItem(.fixed(100),
+                 spacing: 20,
+                 alignment: .center)
+    ]
+    
     var body: some View {
         NavigationView {
             VStack {
-                Color.blue
+                ScrollView {
+                    LazyVGrid(columns: colums) {
+                        
+                        ForEach(data, id: \.self) { item in
+                            ZStack {
+                                Circle()
+                                    .frame(width: 90, height: 90, alignment: .center)
+                                    .foregroundColor(Color.purple)
+                                Text(item)
+                            }.padding()
+                        }
+                        
+                    }
+                }
             }
             .navigationTitle("Home")
         }
