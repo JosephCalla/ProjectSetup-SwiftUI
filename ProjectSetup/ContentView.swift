@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct ActivityView: View {
     var data = (0...1000).map({ "Grid Item \($0)" })
     
     var colums: [GridItem] = [
@@ -48,12 +48,33 @@ struct HomeView: View {
 }
 
 
-struct ActivityView: View {
+struct HomeView: View {
+    @State var textOne = ""
+    @State var textTwo = ""
+    @State var password = ""
+    
     var body: some View {
         NavigationView {
             VStack {
-                Color.red
+                Form {
+                    Section(header: Text("Your info"),
+                            footer: Text("Enter info to create an account.")) {
+                        TextField("First Name", text: $textOne)
+                        TextField("Last Name", text: $textTwo)
+                        TextField("Email Address", text: $textOne)
+                        TextField("Home Addres", text: $textTwo)
+                    }
+                    
+                    Section(header: Text("Create Password")) {
+                        
+                        SecureField("New Password", text: $password)
+                        SecureField("Confirm Password", text: $password)
+                    }
+                }
+                
+                Spacer()
             }
+            .padding()
             .navigationTitle("Activity")
         }
     }
@@ -112,7 +133,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
-                .preferredColorScheme(.light)
+//                .preferredColorScheme(.light)
         }
         
     }
